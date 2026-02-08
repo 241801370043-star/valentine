@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Be My Valentine 💖</title>
+
   <style>
     body {
       margin: 0;
@@ -11,22 +13,32 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #d6f0ff;
+      background: radial-gradient(circle at top, #ffd6e8, #ff9acb);
       font-family: 'Comic Sans MS', cursive, sans-serif;
+      padding: 15px;
+      box-sizing: border-box;
     }
 
     .card {
-      background: #fff;
-      padding: 30px 40px;
-      border-radius: 20px;
+      width: 100%;
+      max-width: 380px;
+      background: linear-gradient(145deg, #ffffff, #ffe6f1);
+      padding: 30px 20px;
+      border-radius: 25px;
       text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 20px 40px rgba(255, 105, 180, 0.35);
       z-index: 2;
+      animation: popIn 0.8s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .name {
-      font-size: 38px;
-      color: #4da6ff;
+      font-size: clamp(28px, 8vw, 38px);
+      color: #ff4f9a;
       animation: bounce 1.5s infinite, glow 2s infinite;
     }
 
@@ -36,14 +48,15 @@
     }
 
     @keyframes glow {
-      0% { text-shadow: 0 0 5px #a3d8ff; }
-      50% { text-shadow: 0 0 20px #4da6ff; }
-      100% { text-shadow: 0 0 5px #a3d8ff; }
+      0% { text-shadow: 0 0 8px #ff9acb; }
+      50% { text-shadow: 0 0 25px #ff4f9a; }
+      100% { text-shadow: 0 0 8px #ff9acb; }
     }
 
     h2 {
-      color: #6bbcff;
-      margin-bottom: 20px;
+      color: #ff6fb3;
+      font-size: clamp(18px, 5vw, 22px);
+      margin: 20px 0;
       font-weight: normal;
     }
 
@@ -63,7 +76,7 @@
     }
 
     #yes {
-      background: #4da6ff;
+      background: #ff4f9a;
       color: white;
       margin-right: 15px;
     }
@@ -78,30 +91,32 @@
       bottom: -20px;
       font-size: 24px;
       animation: floatUp 6s linear infinite;
-      opacity: 0.7;
+      opacity: 0.8;
+      pointer-events: none;
     }
 
     @keyframes floatUp {
       0% {
         transform: translateY(0) scale(1);
-        opacity: 0.8;
+        opacity: 0.9;
       }
       100% {
-        transform: translateY(-110vh) scale(1.5);
+        transform: translateY(-120vh) scale(1.6);
         opacity: 0;
       }
     }
   </style>
 </head>
+
 <body>
 
   <div class="card">
-    <div class="name">CHOTUUU 🩵</div>
+    <div class="name">CHOTUUU 🩷</div>
     <h2>Will you be my Valentine? 🫂💘</h2>
 
     <div class="buttons">
       <button id="yes" onclick="yesClicked()">Yes 💖</button>
-      <button 
+      <button
         id="no"
         onmouseover="moveNo()"
         ontouchstart="moveNo()"
@@ -119,14 +134,31 @@
           display:flex;
           justify-content:center;
           align-items:center;
-          background:#d6f0ff;
+          background:radial-gradient(circle at top, #ffe6f1, #ff6fb3);
           font-family:'Comic Sans MS', cursive;
-          text-align:center;">
-          <h1 style="color:#4da6ff;">
-            YAYYYY CHOTUUU!! 🥹🩵<br>
-            You’re officially my Valentine 💐
+          text-align:center;
+          overflow:hidden;">
+          <h1 style="
+            color:#ff2f92;
+            font-size:clamp(28px, 8vw, 42px);
+            animation:pulse 1.5s infinite;">
+            YAYYYY CHOTUUU!! 🥹💖<br>
+            You’re officially my Valentine 💐💞
           </h1>
         </div>`;
+
+      setInterval(() => {
+        const emoji = document.createElement("div");
+        emoji.innerHTML = ["💖","💘","💝","🌸","🫶","🥰"][Math.floor(Math.random()*6)];
+        emoji.style.position = "absolute";
+        emoji.style.left = Math.random() * 100 + "vw";
+        emoji.style.top = "100vh";
+        emoji.style.fontSize = "30px";
+        emoji.style.animation = "floatUp 4s linear";
+        document.body.appendChild(emoji);
+
+        setTimeout(() => emoji.remove(), 4000);
+      }, 150);
     }
 
     function moveNo() {
@@ -136,18 +168,15 @@
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
 
-    // Floating hearts
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.innerHTML = "🩵";
+      heart.innerHTML = "💗";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (4 + Math.random() * 3) + "s";
       document.body.appendChild(heart);
 
-      setTimeout(() => {
-        heart.remove();
-      }, 7000);
+      setTimeout(() => heart.remove(), 7000);
     }, 500);
   </script>
 
