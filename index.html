@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #d6f0ff;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+
+    .name {
+      font-size: 38px;
+      color: #4da6ff;
+      animation: bounce 1.5s infinite, glow 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #a3d8ff; }
+      50% { text-shadow: 0 0 20px #4da6ff; }
+      100% { text-shadow: 0 0 5px #a3d8ff; }
+    }
+
+    h2 {
+      color: #6bbcff;
+      margin-bottom: 20px;
+      font-weight: normal;
+    }
+
+    .buttons {
+      margin-top: 25px;
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    #yes {
+      background: #4da6ff;
+      color: white;
+      margin-right: 15px;
+    }
+
+    #no {
+      background: #ddd;
+      position: absolute;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="name">CHOTUUU 🩵</div>
+    <h2>Will you be my Valentine? 🫂💘</h2>
+
+    <div class="buttons">
+      <button id="yes" onclick="yesClicked()">Yes 💖</button>
+      <button id="no" onmouseover="moveNo()">No 😢</button>
+    </div>
+  </div>
+
+  <script>
+    function yesClicked() {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          background:#d6f0ff;
+          font-family:'Comic Sans MS', cursive;
+          text-align:center;">
+          <h1 style="color:#4da6ff;">
+            YAYYYY CHOTUUU!! 🥹🩵<br>
+            You’re officially my Valentine 💐
+          </h1>
+        </div>`;
+    }
+
+    function moveNo() {
+      const noBtn = document.getElementById("no");
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 60 - 30;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "🩵";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }, 500);
+  </script>
+
+</body>
+</html>
